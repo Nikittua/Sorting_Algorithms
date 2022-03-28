@@ -1,23 +1,22 @@
-import time
+from run_sorting_algorithm import algo_runtime as time
+from random import randint
 
-start_time = time.time()
 
-
-def bublesort(lst):
+def bubble_sort(lst):
     swapped = True
     while swapped:
         for i in range(len(lst) - 1):
             if lst[i] > lst[i + 1]:
                 lst[i], lst[i + 1] = lst[i + 1], lst[i]
                 swapped = False
+        if swapped:
+            break
+    return lst
 
 
-test = [0, 0, 0, 1, 4, 6, 4, 5, 6, 4235, 654, 543, 543, 65, 765, 4, 23, 654, 5, 436, 54, 543, 756, 65, 54, 432, 654,
-        543, 765,
-        876, 5243, ]
+ARRAY_LENGTH = 10000
 
-bublesort(test)
+if __name__ == "__main__":
+    array = [randint(0, 1000) for i in range(ARRAY_LENGTH)]
 
-print(*test)
-
-print("--- %s seconds ---" % (time.time() - start_time))
+    time(algorithm="bubble_sort", array=array)

@@ -1,24 +1,22 @@
-import time
-
-start_time = time.time()
+from run_sorting_algorithm import algo_runtime as time
+from random import randint
 
 
 def selection_sort(arr):
-    for i in range(len(arr)):
+    for i in range(len(arr) - 1):
         minimum = i
-        for j in range(i + 1, len(arr)):
+        for j in range(i + 1, len(arr) - 1):
             if arr[j] < arr[minimum]:
                 minimum = j
 
         arr[minimum], arr[i] = arr[i], arr[minimum]
 
 
-test = [0, 0, 0, 1, 4, 6, 4, 5, 6, 4235, 654, 543, 543, 65, 765, 4, 23, 654, 5, 436, 54, 543, 756, 65, 54, 432, 654,
-        543, 765,
-        876, 5243, ]
+ARRAY_LENGTH = 1000
 
-selection_sort(test)
+if __name__ == "__main__":
+    array = [randint(0, 1000) for i in range(ARRAY_LENGTH)]
 
-print(*test)
+    time(algorithm="selection_sort", array=array)
 
-print("--- %s seconds ---" % (time.time() - start_time))
+
